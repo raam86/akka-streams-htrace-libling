@@ -12,29 +12,8 @@ In `project/plugins.sbt`
 In `build.sbt`
 
     sourceDependencies += Dependency(
-        Version("<git commit hash>"), 
-        Repositories(uri("<git repository uri>")))
+      Version("92ad7d991f3110b0d8759f896ed5bc89e4755c52"),
+      Repositories(uri("https://github.com/raam86/akka-streams-htrace-libling.git")))
 
-## structure
-
-A libling is deliberately simple and inflexible. For now.
-
-These things will be copied into a project when the libling is added as a dependency by default
-
-    README.md
-        project description and basic docs
-    /doc
-        additional markdown documentation
-    /src
-        your Scala library code goes here
-    /libling
-        libling metadata, generated
-
-These things are included in the template, but not included as dependency by default:
-
-    build.sbt
-    /project
-        the ususal sbt stuff
-    /test
-        your tests are in here
+[parent repo](https://github.com/findhotel/akka-stream-trace)
 
