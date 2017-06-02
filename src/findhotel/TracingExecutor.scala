@@ -1,0 +1,22 @@
+package findhotel
+
+import java.util.concurrent.{ExecutorService, Executors, ThreadFactory}
+
+/**
+ * Created by rrh on 20/12/16.
+ */
+class TracingExecutorConfigurator(config: Config, prerequisites: DispatcherPrerequisites) extends ExecutorServiceConfigurator(config, prerequisites) {
+
+  def createExecutorServiceFactory(id: String, threadFactory: ThreadFactory): ExecutorServiceFactory = {
+    TracingExecutorFactory(id, threadFactory, StreamTracer.tracer)
+  }
+}
+
+case class TracingExecutorFactory(id: String, tf: ThreadFactory, tracer: Tracer) extends ExecutorServiceFactory {
+
+  override def createExecutorService: ExecutorService = {
+    tracer.newTraceExecutorService(Executors.newFixedThreadPool(8, tf), id)
+  }
+
+}
+
